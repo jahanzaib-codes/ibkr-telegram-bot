@@ -1,76 +1,94 @@
-IBKR Telegram Bot
-A Python-based trading bot for Interactive Brokers (IBKR) paper trading, controlled via Telegram. Execute market buy/sell orders with take-profit and stop-loss, and modify orders seamlessly.
-Features
+# IBKR Telegram Bot
 
-Market Orders: Place buy/sell orders at market prices (/buy, /sell).
-Bracket Orders: Set take-profit/stop-loss for buy orders.
-Order Modification: Update orders with /replace.
-Help: View usage with /help.
+<p align="center">
+  <strong>Trade stocks via Telegram on IBKR's paper trading account</strong>
+</p>
 
-Prerequisites
+A Python-based bot for Interactive Brokers (IBKR) demo account, enabling market buy/sell orders with take-profit and stop-loss via Telegram commands.
 
-Python 3.8+
-IBKR TWS (paper trading, port 7497)
-Telegram bot token and chat ID
+## Features
+- <b>Market Orders</b>: Execute buy/sell orders at market prices.
+- <b>Bracket Orders</b>: Set take-profit/stop-loss for buy orders.
+- <b>Order Modification</b>: Update orders with ease.
+- <b>Help</b>: Detailed usage guide via <code>/help</code>.
 
-Installation
+## Prerequisites
+<ul>
+  <li>Python 3.8+</li>
+  <li>IBKR TWS (paper trading, port 7497)</li>
+  <li>Telegram bot token and chat ID</li>
+</ul>
 
-Clone Repository:git clone https://github.com/jahanzaib-codes/ibkr-telegram-bot.git
-cd ibkr-telegram-bot
+## Installation
+1. <b>Clone Repository</b>:
+   ```bash
+   git clone https://github.com/jahanzaib-codes/ibkr-telegram-bot.git
+   cd ibkr-telegram-bot
+   ```
 
+2. <b>Install Dependencies</b>:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Install Dependencies:pip install -r requirements.txt
+3. <b>Configure TWS</b>:
+   <ul>
+     <li>Open TWS, log in to paper trading account.</li>
+     <li>Go to <code>File > Global Configuration > API > Settings</code>:
+       <ul>
+         <li>Enable <code>ActiveX and Socket Clients</code>.</li>
+         <li>Set port to <code>7497</code>.</li>
+         <li>Add <code>127.0.0.1</code> to Trusted IPs.</li>
+       </ul>
+     </li>
+   </ul>
 
+4. <b>Configure Telegram</b>:
+   <ul>
+     <li>Update <code>bot.py</code> with your Telegram bot token and chat ID.</li>
+     <li>Get token from <code>@BotFather</code> and chat ID from <code>@userinfobot</code>.</li>
+   </ul>
 
-Configure TWS:
-Open TWS, log in to paper trading account.
-Go to File > Global Configuration > API > Settings:
-Enable ActiveX and Socket Clients.
-Set port to 7497.
-Add 127.0.0.1 to Trusted IPs.
+5. <b>Run Bot</b>:
+   ```bash
+   python bot.py
+   ```
 
+## Usage
+Use these Telegram commands:
+<ul>
+  <li><b>/buy &lt;symbol&gt; &lt;quantity&gt; &lt;take_profit&gt; &lt;stop_loss&gt;</b>
+    <p>Example: <code>/buy AAPL 10 150.50 140.25</code><br>
+    Buys 10 AAPL shares at market price, sets take-profit at $150.50, stop-loss at $140.25.</p>
+  </li>
+  <li><b>/sell &lt;symbol&gt; &lt;quantity&gt;</b>
+    <p>Example: <code>/sell AAPL 10</code><br>
+    Sells 10 AAPL shares at market price.</p>
+  </li>
+  <li><b>/replace &lt;symbol&gt; &lt;order_id&gt; &lt;new_take_profit&gt; &lt;new_stop_loss&gt;</b>
+    <p>Example: <code>/replace AAPL 12345 155.00 135.00</code><br>
+    Updates order ID 12345 for AAPL with take-profit at $155.00, stop-loss at $135.00.</p>
+  </li>
+  <li><b>/help</b>
+    <p>Shows detailed usage guide.</p>
+  </li>
+</ul>
 
+## Troubleshooting
+<ul>
+  <li><b>Connection Issues</b>: Ensure TWS is running, port 7497 is open, and <code>127.0.0.1</code> is trusted.</li>
+  <li><b>Order Rejections</b>: Verify symbol, account balance, and market hours.</li>
+  <li><b>Logs</b>: Check console for error details.</li>
+</ul>
 
+## Notes
+<ul>
+  <li>For IBKR paper trading (port 7497).</li>
+  <li>Test thoroughly to avoid errors.</li>
+</ul>
 
-Verify Telegram Config:
-In bot.py, ensure:TELEGRAM_TOKEN = "8175293763:AAEECMe9YOJErWjz3AnM9KbhZINchU-_aZg"
-CHAT_ID = "1798492490"
-
-
-
-
-Run Bot:python bot.py
-
-
-
-Usage
-
-Buy: /buy <symbol> <quantity> <take_profit> <stop_loss>
-Example: /buy AAPL 10 150.50 140.25
-
-
-Sell: /sell <symbol> <quantity>
-Example: /sell AAPL 10
-
-
-Replace: /replace <symbol> <order_id> <new_take_profit> <new_stop_loss>
-Example: /replace AAPL 12345 155.00 135.00
-
-
-Help: /help for detailed guide.
-
-Troubleshooting
-
-Connection Issues: Verify TWS is running, port 7497 is open, and 127.0.0.1 is trusted.
-Order Rejections: Check symbol, account balance, or market hours.
-Logs: Review console for errors.
-
-Notes
-
-For IBKR paper trading only (port 7497).
-Test thoroughly to avoid errors.
-
-License
+## License
 MIT License
-Disclaimer
+
+## Disclaimer
 For educational use in IBKR demo account. Trading involves risk. Test before live use.
